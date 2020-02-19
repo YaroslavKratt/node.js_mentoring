@@ -1,0 +1,22 @@
+{
+  "name": "node.js_mentoring",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "string_reversing": "nodemon string_reversing.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YaroslavKratt/node.js_mentoring.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YaroslavKratt/node.js_mentoring/issues"
+  },
+  "homepage": "https://github.com/YaroslavKratt/node.js_mentoring#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
