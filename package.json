@@ -1,8 +1,7 @@
 {
   "name": "node.js_mentoring",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Mentoring tasks",
   "scripts": {
     "string_reversing": "nodemon string_reversing.js"
   },
@@ -10,7 +9,7 @@
     "type": "git",
     "url": "git+https://github.com/YaroslavKratt/node.js_mentoring.git"
   },
-  "author": "",
+  "author": "Yaroslav Kratt",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/YaroslavKratt/node.js_mentoring/issues"
