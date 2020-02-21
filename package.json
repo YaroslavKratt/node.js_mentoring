@@ -1,22 +1,29 @@
 {
   "name": "node.js_mentoring",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Mentoring tasks",
   "scripts": {
-    "string_reversing": "nodemon string_reversing.js"
+    "string_reversing": "nodemon --exec babel-node  string_reversing.js",
+    "csv_to_json": "nodemon --exec babel-node csv_to_json_or_txt.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/YaroslavKratt/node.js_mentoring.git"
   },
-  "author": "",
+  "author": "Yaroslav Kratt",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/YaroslavKratt/node.js_mentoring/issues"
   },
   "homepage": "https://github.com/YaroslavKratt/node.js_mentoring#readme",
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/node": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
     "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "csvtojson": "^2.0.10"
   }
 }
