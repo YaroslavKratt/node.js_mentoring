@@ -4,6 +4,7 @@
   "description": "Mentoring tasks",
   "scripts": {
     "string_reversing": "nodemon string_reversing.js"
+    "csv_to_json": "nodemon csv_to_json_or_txt.js"
   },
   "repository": {
     "type": "git",
