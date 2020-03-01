@@ -4,7 +4,9 @@
   "description": "",
   "main": "./src/app.js",
   "dependencies": {
+    "@hapi/joi": "^17.1.0",
     "array-sort": "^1.0.0",
+    "babel-eslint": "^10.1.0",
     "express": "^4.17.1",
     "uuid": "^7.0.1"
   },
