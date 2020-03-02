@@ -7,9 +7,10 @@ const middleware = require('./middlewares/middlewares');
 app.use(express.json());
 app.use('/users', router);
 
+app.use(middleware.logErrors);
 app.use((err, req, res) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
 });
-app.use(middleware.logErrors);
+
 app.listen(port);
