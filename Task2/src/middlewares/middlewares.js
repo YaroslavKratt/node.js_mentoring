@@ -1,8 +1,9 @@
 const winston = require('../logger');
 
-exports.logErrors = (err, req, res, next) => {
-    console.error(err.stack);
-    next(err);
+exports.handleError = (err, req, res, next) => {
+    winston.logger.error(err.stack);
+    res.status(500).send('Internal server error');
+    next();
 };
 
 exports.validateSchema = (schema) => {
