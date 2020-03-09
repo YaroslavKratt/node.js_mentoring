@@ -1,3 +1,5 @@
+const winston = require('../logger');
+
 exports.logErrors = (err, req, res, next) => {
     console.error(err.stack);
     next(err);
@@ -14,6 +16,16 @@ exports.validateSchema = (schema) => {
         } else {
             return  next();
         }
+    };
+};
+
+exports.traceRequest = (methodName) => {
+    return (req, res, next) => {
+        winston.logger.info(`${req.method}: ${req.originalUrl} => ${methodName}
+        with params: ${JSON.stringify(req.params)},
+        query params ${JSON.stringify(req.query)},
+        and body ${JSON.stringify(req.body)}`);
+        next();
     };
 };
 

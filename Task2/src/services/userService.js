@@ -5,7 +5,7 @@ const storage = new Map();
 
 exports.getUserById = (id) => {
     const user = storage.get(id);
-    if (!user.isDeleted) {
+    if (user !== undefined && 'isDeleted' in user && !user.isDeleted) {
         return user;
     }
     return;

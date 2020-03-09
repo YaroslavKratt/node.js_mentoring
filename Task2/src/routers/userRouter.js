@@ -5,12 +5,14 @@ const middleware = require('../middlewares/middlewares');
 const schemas = require('../schemas/schemas');
 
 
-router.get('/:id', userController.getUserById);
+router.get('/:id', middleware.traceRequest('getUserById'), userController.getUserById);
 
-router.get('/login/:login/limit/:limit', userController.getAutoSuggestUsers);
+router.get('/login/:login/limit/:limit', middleware.traceRequest('getAutoSuggestUsers'),
+    userController.getAutoSuggestUsers);
 
-router.post('/', middleware.validateSchema(schemas.userSchema), userController.createOrUpdateUser);
+router.post('/',  middleware.traceRequest('createOrUpdateUser'),
+    middleware.validateSchema(schemas.userSchema), userController.createOrUpdateUser);
 
-router.post('/delete/:id', userController.deleteUser);
+router.post('/delete/:id', middleware.traceRequest('deleteUser'), userController.deleteUser);
 
 module.exports = router;
