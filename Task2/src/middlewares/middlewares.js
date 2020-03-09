@@ -30,6 +30,20 @@ exports.traceRequest = (methodName) => {
     };
 };
 
+exports.logErrors = (methodName, method) => {
+    return (req, res) => {
+        try {
+            return method.call(this, req, res);
+        } catch (err) {
+            winston.logger.error(`Error: ${err.message} in "${methodName}"
+              with: body: ${JSON.stringify(req.body)},
+                query: ${JSON.stringify(req.query)},
+                params: ${JSON.stringify(req.params)}`);
+            throw err;
+        }
+    };
+};
+
 function respondWithValidationError(schemaErrors) {
     const errors = schemaErrors.map((error) => {
         const { path, message } = error;
