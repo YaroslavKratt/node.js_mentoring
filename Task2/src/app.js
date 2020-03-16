@@ -1,13 +1,19 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const router = require('./routers/userRouter');
+const homeRouter = require('./routers/homeRouter');
+const userRouter = require('./routers/userRouter');
 const middleware = require('./middlewares/middlewares');
 const winston = require('./logger');
+const cors = require('cors');
+
 
 app.use(express.json());
+app.use(cors());
 
-app.use('/users', router);
+app.use('/', homeRouter);
+app.use('/users', userRouter);
+
 app.use(middleware.handleError);
 
 process.on('uncaughtException',  (err) => {
