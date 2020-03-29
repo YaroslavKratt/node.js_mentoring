@@ -7,7 +7,11 @@ const schemas = require('../schemas/schemas');
 
 router.get('/:id', middleware.checkToken,
     middleware.traceRequest('getUserById'),
-    middleware.logErrors('getUserById',     userController.getUserById));
+    middleware.logErrors('getUserById',  userController.getUserById));
+
+router.get('/group/:id', middleware.checkToken,
+    middleware.traceRequest('getUserGroupById'),
+    middleware.logErrors('getUserGroupById',  userController.getUserGroupById));
 
 router.get('/login/:login/limit/:limit', middleware.checkToken,
     middleware.traceRequest('getAutoSuggestUsers'),

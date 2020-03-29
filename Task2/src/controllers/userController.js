@@ -1,7 +1,20 @@
 const userService = require('../services/userService');
 
 exports.getUserById = (req, res) => {
-    res.json(userService.getUserById(req.params.id));
+    try {
+        res.json(userService.getUserById(req.params.id));
+    } catch (e) {
+        console.log(e);
+        res.status(404).send(e.message);
+    }
+};
+
+exports.getUserGroupById =  async (req, res) => {
+    try {
+        res.json(await userService.getUserGroupById(req.params.id));
+    } catch (e) {
+        res.status(404).send(`No group found with id ${req.params.id}. ${e}`);
+    }
 };
 
 exports.createOrUpdateUser = (req, res) => {

@@ -1,5 +1,5 @@
 {
-  "name": "user_service",
+  "name": "group_service",
   "version": "1.0.0",
   "description": "",
   "main": "./src/app.js",
@@ -10,8 +10,6 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "node-fetch": "^2.6.0",
-    "request": "^2.88.2",
     "uuid": "^7.0.1",
     "winston": "^3.2.1"
   },
@@ -26,7 +24,6 @@
   },
   "scripts": {
     "start": " eslint . --fix && nodemon  ./src/app.js",
-    "origin": " eslint . --fix && nodemon --exec babel-node ./src/app2.js",
     "test": "jest"
   },
   "author": "Yaroslav Kratt",
