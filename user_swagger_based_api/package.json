@@ -13,7 +13,9 @@
     "swagger-express-mw": "^0.1.0",
     "winston": "^3.2.1",
     "array-sort": "^1.0.0",
-    "jsonwebtoken": "^8.5.1"
+    "cors": "^2.8.5",
+    "jsonwebtoken": "^8.5.1",
+      "@hapi/joi": "^17.1.0"
   },
   "devDependencies": {
     "should": "^7.1.0",

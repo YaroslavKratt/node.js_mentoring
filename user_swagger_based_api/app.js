@@ -1,15 +1,23 @@
 const SwaggerExpress = require('swagger-express-mw');
-const app = require('express')();
+const express = require('express');
+const app = express();
 const userRouter = require('./api/routers/userRouter');
 const middleware = require('./api/middlewares/middlewares');
 const winston = require('./config/logger');
 const mongoose = require('mongoose');
+const cors = require('cors');
+
 require('dotenv').config();
 
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
 const db = mongoose.connection;
-db.on('error', (error) => console.error(error));
-db.once('open', () => console.log('connected to database'));
+
+db.on('error', (error) =>   winston.logger.error(error));
+db.once('open', () =>   winston.logger.info('Connected to db'));
+
+app.use(express.json());
+app.use(cors());
+
 app.use('/users', userRouter);
 app.use(middleware.handleError);
 

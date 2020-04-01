@@ -1,25 +1,34 @@
 const userService = require('../services/userService');
 
-exports.getUserById = (req, res) => {
-    try {
-        res.json(userService.getUserById(req.params.id));
-    } catch (e) {
-        console.log(e);
-        res.status(404).send(e.message);
-    }
+exports.getAllUsers = async (req, res) => {
+    res.json(await userService.getAllUsers());
 };
 
-exports.createOrUpdateUser = (req, res) => {
-    req.body.id = userService.createIdForNewUser(req.body);
-    userService.storage.set(req.body.id, req.body);
-    res.send(`id: ${req.body.id}`);
+exports.getUserById = async (req, res) => {
+    await userService.getUserById(req.params.id)
+        .then((user) => {
+            if (user === null) {
+                throw new Error(`User with id ${req.params.id} not found`);
+            }
+            res.json(user);
+        })
+        .catch((err) =>  res.status(404).send(err.message));
 };
 
-exports.getAutoSuggestUsers = (req, res) => {
-    res.json(userService.getAutoSuggestUsers(req.params.login, req.params.limit));
+exports.createOrUpdateUser = async (req, res) => {
+    res.json(`${ await userService.createOrUpdateUser(req.body)}`);
 };
 
-exports.deleteUser = (req, res) => {
-    userService.deleteUser(req.params.id);
-    res.sendStatus(200);
+exports.getAutoSuggestUsers = async (req, res) => {
+    res.json(await userService.getAutoSuggestUsers(req.params.login, req.params.limit));
+};
+
+exports.deleteUser = async (req, res) => {
+    await userService.deleteUser(req.params.id).then((deletInfo) => {
+        if (deletInfo.deletedCount === 0) {
+            throw new Error(`User with id ${req.params.id} not found`);
+        }
+        res.status(200).send(`User with id ${req.params.id} was deleted`);
+    })
+        .catch((err) =>  res.status(404).send(err.message));
 };

@@ -1,5 +1,4 @@
 const winston = require('../../config/logger');
-const jwt = require('jsonwebtoken');
 
 
 exports.handleError = (err, req, res, next) => { // eslint-disable-line no-unused-vars
@@ -43,22 +42,6 @@ exports.logErrors = (methodName, method) => {
             throw err;
         }
     };
-};
-
-exports.checkToken = (req, res, next) => {
-    const token = req.headers['x-access-token'];
-
-    if (token) {
-        jwt.verify(token, 'some secret', (err) => {
-            if (err) {
-                res.status(403).send('Forbidden Error');
-            } else {
-                return  next();
-            }
-        });
-    } else {
-        res.status(401).send('Unauthorized Error');
-    }
 };
 
 function respondWithValidationError(schemaErrors) {
